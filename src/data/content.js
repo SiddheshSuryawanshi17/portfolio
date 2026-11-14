@@ -18,6 +18,8 @@ export const profile = {
   availableText: 'Open to internships & full-time roles · 2027',
   // Put your photo in public/images/me/portrait.jpg. Until then a placeholder is shown.
   portrait: '/images/me/portrait.jpg',
+  // shown when someone hovers over the portrait
+  portraitAlt: '/images/me/portrait-casual.jpg',
   heroLine: 'I build AI that runs on your machine and explains its decisions.',
 }
 
@@ -169,3 +171,18 @@ export const skills = [
     items: ['SQL & NoSQL', 'Data Modeling', 'Pandas / NumPy', 'Networking & TCP/IP', 'System Design'],
   },
 ]
+
+// "Off the clock" photo strip. Add or remove photos freely.
+export const gallery = {
+  title: 'Off the clock',
+  intro: 'When I’m not training models, I’m usually outside with a camera pointed at me.',
+  photos: [
+    '/images/me/gallery/01.jpg',
+    '/images/me/gallery/02.jpg',
+    '/images/me/gallery/03.jpg',
+    '/images/me/gallery/04.jpg',
+    '/images/me/gallery/05.jpg',
+    '/images/me/gallery/06.jpg',
+    '/images/me/gallery/07.jpg',
+  ],
+}

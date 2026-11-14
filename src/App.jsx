@@ -8,6 +8,7 @@ import Marquee from './components/Marquee'
 import About from './components/About'
 import Work from './components/Work'
 import Experience from './components/Experience'
+import Gallery from './components/Gallery'
 import Contact from './components/Contact'
 
 export default function App() {
@@ -62,6 +63,7 @@ export default function App() {
         <About />
         <Work />
         <Experience />
+        <Gallery />
         <Contact />
       </main>
       <div className="grain" aria-hidden="true" />

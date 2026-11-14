@@ -3,3 +3,6 @@ dist
 .DS_Store
 .vercel
 *.local
+
+# your original photos stay on your computer only
+Photos (originals)/

@@ -55,14 +55,20 @@ export default function About() {
       <div className="about__grid">
         <figure className="portrait" data-cursor="Hi!">
           {hasPhoto ? (
-            <img src={profile.portrait} alt={`Portrait of ${profile.firstName} ${profile.lastName}`} onError={() => setHasPhoto(false)} />
+            <>
+              <img src={profile.portrait} alt={`Portrait of ${profile.firstName} ${profile.lastName}`} onError={() => setHasPhoto(false)} />
+              {profile.portraitAlt && <img className="portrait__alt" src={profile.portraitAlt} alt="" loading="lazy" />}
+            </>
           ) : (
             <div className="portrait__placeholder">
               <span>{profile.initials}</span>
             </div>
           )}
           <figcaption className="portrait__cap mono">
-            <span>{profile.firstName}</span>
+            <span className="portrait__swap">
+              <span>At work</span>
+              <span>Off the clock</span>
+            </span>
             <span>{profile.location.split(',')[0]}, IN</span>
           </figcaption>
         </figure>

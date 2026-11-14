@@ -23,7 +23,7 @@ export default function Contact() {
   return (
     <section className="contact" id="contact">
       <div className="section-head mono" style={{ marginBottom: 0 }}>
-        <span>(05) Contact</span>
+        <span>(06) Contact</span>
         <span className="muted">Let’s talk</span>
       </div>
 
