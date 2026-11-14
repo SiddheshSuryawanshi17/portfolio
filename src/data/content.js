@@ -80,8 +80,9 @@ export const projects = [
     blurb:
       'A multi-agent framework for clinical decision support. ML analysis, rule-based checks and LLM agents each handle one step, so every diagnosis suggestion comes with an explanation you can audit, rather than one generative model writing the whole report.',
     stack: ['Python', 'Multi-Agent', 'LLM Agents', 'Scikit-learn', 'Rule engine'],
-    image: '',
-    color: '#7cc4ff',
+    image: '/images/projects/medintel.jpg',
+    imagePosition: 'left top',
+    color: '#4fd1c5',
     link: 'https://github.com/SiddheshSuryawanshi17/MedIntel-A-Multi-Agent-AI-Framework-for-Clinical-Decision-Support',
   },
   {

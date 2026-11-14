@@ -3,7 +3,8 @@ import { gsap, reducedMotion } from '../lib/scroll'
 import { projects } from '../data/content'
 
 function Media({ p }) {
-  if (p.image) return <img src={p.image} alt={`${p.title} screenshot`} loading="lazy" />
+  if (p.image)
+    return <img src={p.image} alt={`${p.title} screenshot`} loading="lazy" style={{ objectPosition: p.imagePosition || 'center' }} />
   return (
     <div className="cover" aria-hidden="true">
       <div className="cover__glyph" />
@@ -22,7 +23,7 @@ export default function Work() {
       cards.forEach((card, i) => {
         const next = cards[i + 1]
         if (!next) return
-        gsap.to(card, {
+        gsap.fromTo(card, { scale: 1, filter: 'brightness(1)' }, {
           scale: 0.9,
           filter: 'brightness(0.45)',
           ease: 'none',
