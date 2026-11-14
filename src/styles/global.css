@@ -14,6 +14,7 @@
   --accent: #c6ff3d;
   --accent-ink: #0a0a0b;
   --accent-text: #c6ff3d;
+  --orange-text: #fb923c;
 
   --f-sans: 'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif;
   --f-serif: 'Instrument Serif', Georgia, serif;
@@ -717,6 +718,50 @@ button {
   }
   .portrait {
     max-width: 420px;
+  }
+}
+
+/* ── hello recruiter ───────────────────────────────────── */
+.hello {
+  position: relative;
+  padding: 0 0 clamp(96px, 12vw, 180px);
+}
+.hello__frame {
+  overflow: hidden;
+  aspect-ratio: 1672 / 941;
+  background: #fbece0;
+}
+.hello__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+}
+.hello__row {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  align-items: center;
+  gap: 16px 32px;
+  padding: 24px var(--gutter) 0;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 24px;
+  margin: 0 var(--gutter);
+  padding-left: 0;
+  padding-right: 0;
+}
+.hello__row .mono {
+  color: var(--orange-text);
+}
+.hello__text {
+  font-size: clamp(18px, 1.6vw, 26px);
+  letter-spacing: -0.02em;
+}
+@media (max-width: 760px) {
+  .hello__row {
+    grid-template-columns: 1fr;
+  }
+  .hello__row .pill {
+    justify-self: start;
   }
 }
 

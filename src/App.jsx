@@ -7,14 +7,15 @@ import Hero from './components/Hero'
 import Marquee from './components/Marquee'
 import Manifesto from './components/Manifesto'
 import About from './components/About'
+import Hello from './components/Hello'
 import Work from './components/Work'
 import Experience from './components/Experience'
 import Gallery from './components/Gallery'
 import Contact from './components/Contact'
 
 const THEMES = {
-  dark: { '--bg': '#0a0a0b', '--bg-2': '#121214', '--fg': '#ecebe6', '--fg-2': '#c9c8c2', '--muted': '#8b8a85', '--line': 'rgba(236,235,230,0.12)', '--accent-text': '#c6ff3d' },
-  light: { '--bg': '#efeee8', '--bg-2': '#e4e3dc', '--fg': '#0e0e0f', '--fg-2': '#3a3a37', '--muted': '#5f5e59', '--line': 'rgba(14,14,15,0.14)', '--accent-text': '#4a6a00' },
+  dark: { '--bg': '#0a0a0b', '--bg-2': '#121214', '--fg': '#ecebe6', '--fg-2': '#c9c8c2', '--muted': '#8b8a85', '--line': 'rgba(236,235,230,0.12)', '--accent-text': '#c6ff3d', '--orange-text': '#fb923c' },
+  light: { '--bg': '#efeee8', '--bg-2': '#e4e3dc', '--fg': '#0e0e0f', '--fg-2': '#3a3a37', '--muted': '#5f5e59', '--line': 'rgba(14,14,15,0.14)', '--accent-text': '#4a6a00', '--orange-text': '#a8380a' },
 }
 let current = 'dark'
 function setTheme(name) {
@@ -84,6 +85,7 @@ export default function App() {
         <Marquee />
         <Manifesto />
         <About />
+        <Hello />
         <Work />
         <Experience />
         <Gallery />
