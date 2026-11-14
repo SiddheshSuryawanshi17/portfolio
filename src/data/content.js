@@ -183,8 +183,10 @@ export const gallery = {
   intro: 'When I’m not training models, I’m usually outside with a camera pointed at me.',
   photos: [
     '/images/me/gallery/01.webp',
+    '/images/me/gallery/08.webp',
     '/images/me/gallery/02.webp',
     '/images/me/gallery/03.webp',
+    '/images/me/gallery/09.webp',
     '/images/me/gallery/04.webp',
     '/images/me/gallery/05.webp',
     '/images/me/gallery/06.webp',
