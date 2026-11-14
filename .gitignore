@@ -6,3 +6,4 @@ dist
 
 # your original photos stay on your computer only
 Photos (originals)/
+.env*
