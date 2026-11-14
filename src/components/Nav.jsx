@@ -27,9 +27,10 @@ export default function Nav() {
   return (
     <>
       <header className={`nav ${open ? 'menu-open' : ''}`}>
-        <a href="#top" className="nav__logo" onClick={(e) => go(e, '#top')} aria-label="Back to top">
+        <a href="#top" className="nav__logo" onClick={(e) => go(e, '#top')}>
           {profile.initials}
           <sup>©</sup>
+          <span className="sr-only"> {profile.firstName} {profile.lastName}, back to top</span>
         </a>
         <div className="nav__time mono">
           {profile.location.split(',')[0]} · {time} IST

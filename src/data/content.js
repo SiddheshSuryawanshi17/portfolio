@@ -16,10 +16,10 @@ export const profile = {
   resume: '/resume.pdf',
   available: true,
   availableText: 'Open to internships & full-time roles · 2027',
-  // Put your photo in public/images/me/portrait.jpg. Until then a placeholder is shown.
-  portrait: '/images/me/portrait.jpg',
+  // Your photo. Swap the file in public/images/me/ to change it.
+  portrait: '/images/me/portrait.webp',
   // shown when someone hovers over the portrait
-  portraitAlt: '/images/me/portrait-casual.jpg',
+  portraitAlt: '/images/me/portrait-casual.webp',
   heroLine: 'I build AI that runs on your machine and explains its decisions.',
 }
 
@@ -31,6 +31,10 @@ export const socials = [
   { label: 'Instagram', href: 'https://www.instagram.com/siddhesh_suryawanshi/' },
   { label: 'Dev.to', href: 'https://dev.to/siddheshsuryawanshi' },
 ]
+
+// Words wrapped in *asterisks* are highlighted.
+export const manifesto =
+  'AI should be *private* by default, *explainable* by design and shipped from first commit to *production.*'
 
 export const marquee = [
   'Generative AI',
@@ -69,7 +73,7 @@ export const projects = [
       'A spoken mock interviewer that runs 100% on your own machine. Gemma 4 asks questions based on your resume and the job description, listens to your answers, adapts the difficulty and writes a scored PDF report. Your voice and data never leave the device.',
     stack: ['Gemma 4', 'Ollama', 'Whisper', 'Piper TTS', 'Gradio', 'Python'],
     award: '1st Prize · Build with Gemma, ML Nashik × Kaggle',
-    image: '/images/projects/ai-interviewer-thumbnail.png',
+    image: '/images/projects/ai-interviewer-thumbnail.webp',
     color: '#c6ff3d',
     link: 'https://github.com/SiddheshSuryawanshi17/Privacy-First-AI-Interviewer',
   },
@@ -80,7 +84,7 @@ export const projects = [
     blurb:
       'A multi-agent framework for clinical decision support. ML analysis, rule-based checks and LLM agents each handle one step, so every diagnosis suggestion comes with an explanation you can audit, rather than one generative model writing the whole report.',
     stack: ['Python', 'Multi-Agent', 'LLM Agents', 'Scikit-learn', 'Rule engine'],
-    image: '/images/projects/medintel.jpg',
+    image: '/images/projects/medintel.webp',
     imagePosition: 'left top',
     color: '#4fd1c5',
     link: 'https://github.com/SiddheshSuryawanshi17/MedIntel-A-Multi-Agent-AI-Framework-for-Clinical-Decision-Support',
@@ -178,12 +182,12 @@ export const gallery = {
   title: 'Off the clock',
   intro: 'When I’m not training models, I’m usually outside with a camera pointed at me.',
   photos: [
-    '/images/me/gallery/01.jpg',
-    '/images/me/gallery/02.jpg',
-    '/images/me/gallery/03.jpg',
-    '/images/me/gallery/04.jpg',
-    '/images/me/gallery/05.jpg',
-    '/images/me/gallery/06.jpg',
-    '/images/me/gallery/07.jpg',
+    '/images/me/gallery/01.webp',
+    '/images/me/gallery/02.webp',
+    '/images/me/gallery/03.webp',
+    '/images/me/gallery/04.webp',
+    '/images/me/gallery/05.webp',
+    '/images/me/gallery/06.webp',
+    '/images/me/gallery/07.webp',
   ],
 }

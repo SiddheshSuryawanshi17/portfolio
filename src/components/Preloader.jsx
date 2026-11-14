@@ -1,50 +1,44 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import { gsap, reducedMotion } from '../lib/scroll'
-import { profile } from '../data/content'
 
+// The loading screen itself is plain HTML in index.html (#boot) so it shows
+// instantly. This component only animates it: counts 000 → 100, waits for
+// fonts, then wipes it away and tells the app to start.
 export default function Preloader({ onDone }) {
-  const root = useRef(null)
-  const [n, setN] = useState(0)
-
   useEffect(() => {
+    const boot = document.getElementById('boot')
+    if (!boot) {
+      onDone()
+      return
+    }
+    const count = boot.querySelector('b')
+    const bar = boot.querySelector('s')
     document.body.classList.add('is-loading')
     const counter = { v: 0 }
-    const finish = () => {
-      document.body.classList.remove('is-loading')
-      onDone()
-    }
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline()
-      tl.to(counter, {
-        v: 100,
-        duration: reducedMotion ? 0.2 : 2.1,
-        ease: 'power3.inOut',
-        onUpdate: () => setN(Math.round(counter.v)),
+    const d = reducedMotion ? 0.2 : 1.1
+    const tl = gsap.timeline()
+    tl.to(counter, {
+      v: 100,
+      duration: d,
+      ease: 'power3.inOut',
+      onUpdate: () => (count.textContent = String(Math.round(counter.v)).padStart(3, '0')),
+    })
+      .to(bar, { scaleX: 1, duration: d, ease: 'power3.inOut' }, 0)
+      // wait for fonts so the hero never flashes in a fallback font
+      .add(() => {
+        tl.pause()
+        document.fonts.ready.then(() => tl.resume())
       })
-        .to('.preloader__bar', { scaleX: 1, duration: reducedMotion ? 0.2 : 2.1, ease: 'power3.inOut' }, 0)
-        // wait for fonts so the hero never flashes in a fallback font
-        .add(() => {
-          tl.pause()
-          document.fonts.ready.then(() => tl.resume())
-        })
-        .to('.preloader__inner', { yPercent: -30, opacity: 0, duration: 0.6, ease: 'power2.in' })
-        .to(root.current, { clipPath: 'inset(0 0 100% 0)', duration: 1, ease: 'expo.inOut' }, '-=0.25')
-        .add(finish, '-=0.55')
-    }, root)
-    return () => ctx.revert()
+      .to(boot.children, { yPercent: -30, opacity: 0, duration: 0.45, ease: 'power2.in', stagger: 0.03 })
+      .to(boot, { clipPath: 'inset(0 0 100% 0)', duration: 0.9, ease: 'expo.inOut' }, '-=0.2')
+      .add(() => {
+        document.body.classList.remove('is-loading')
+        onDone()
+      }, '-=0.55')
+      .add(() => boot.remove())
+    return () => tl.kill()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return (
-    <div className="preloader" ref={root} style={{ clipPath: 'inset(0 0 0% 0)' }} aria-hidden="true">
-      <div className="preloader__inner">
-        <div className="preloader__top mono">
-          <span>{profile.firstName} {profile.lastName}</span>
-          <span className="muted">Portfolio ©{new Date().getFullYear()}</span>
-        </div>
-        <div className="preloader__count">{String(n).padStart(3, '0')}</div>
-      </div>
-      <div className="preloader__bar" />
-    </div>
-  )
+  return null
 }

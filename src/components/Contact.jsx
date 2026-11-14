@@ -1,8 +1,10 @@
-import { useRef, useState } from 'react'
+import { lazy, Suspense, useRef, useState } from 'react'
 import { profile, socials } from '../data/content'
 import { scrollTo } from '../lib/scroll'
 import useMagnet from '../hooks/useMagnet'
 import useLocalTime from '../hooks/useLocalTime'
+
+const NeuralField = lazy(() => import('./NeuralField'))
 
 export default function Contact() {
   const magnet = useRef(null)
@@ -21,7 +23,10 @@ export default function Contact() {
   }
 
   return (
-    <section className="contact" id="contact">
+    <section className="contact" id="contact" data-theme="dark">
+      <Suspense fallback={null}>
+        <NeuralField scrollLinked={false} className="contact__field" />
+      </Suspense>
       <div className="section-head mono" style={{ marginBottom: 0 }}>
         <span>(06) Contact</span>
         <span className="muted">Let’s talk</span>

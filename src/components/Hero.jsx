@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useRef } from 'react'
 import { gsap, reducedMotion } from '../lib/scroll'
 import { profile } from '../data/content'
-const NeuralField = lazy(() => import('./NeuralField'))
+const PortraitField = lazy(() => import('./PortraitField'))
 
 const chars = (word) =>
   [...word].map((c, i) => (
@@ -25,8 +25,8 @@ export default function Hero({ ready }) {
     if (!ready) return
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
-      tl.to('.hero__name .char', { yPercent: 0, duration: reducedMotion ? 0.01 : 1.4, stagger: 0.035 })
-        .to('.hero [data-fade]', { opacity: 1, y: 0, duration: 1, stagger: 0.08 }, '-=1.0')
+      tl.to('.hero__name .char', { yPercent: 0, duration: reducedMotion ? 0.01 : 1.1, stagger: 0.022 })
+        .to('.hero [data-fade]', { opacity: 1, y: 0, duration: 0.8, stagger: 0.06 }, '-=0.9')
 
       if (!reducedMotion) {
         gsap.to('.hero__content', {
@@ -41,9 +41,9 @@ export default function Hero({ ready }) {
   }, [ready])
 
   return (
-    <section className="hero" id="top" ref={root}>
+    <section className="hero" id="top" ref={root} data-theme="dark">
       <Suspense fallback={<div className="hero__canvas" />}>
-        <NeuralField />
+        <PortraitField ready={ready} />
       </Suspense>
       <div className="hero__vignette" />
       <div className="hero__content">
@@ -51,10 +51,6 @@ export default function Hero({ ready }) {
           <p className="hero__line" data-fade>
             {profile.heroLine}
           </p>
-          <div className="hero__status mono" data-fade>
-            {profile.available && <span className="dot" />}
-            <span>{profile.availableText}</span>
-          </div>
         </div>
         <h1 className="hero__name" aria-label={`${profile.firstName} ${profile.lastName}, ${profile.role}`}>
           <span className="row-1" aria-hidden="true">
@@ -71,6 +67,10 @@ export default function Hero({ ready }) {
         </h1>
         <div className="hero__bottom mono" data-fade>
           <span>{profile.location}</span>
+          <span className="hero__status">
+            {profile.available && <span className="dot" />}
+            {profile.availableText}
+          </span>
           <span className="muted">Scroll ↓</span>
         </div>
       </div>

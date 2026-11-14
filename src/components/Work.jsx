@@ -4,7 +4,18 @@ import { projects } from '../data/content'
 
 function Media({ p }) {
   if (p.image)
-    return <img src={p.image} alt={`${p.title} screenshot`} loading="lazy" style={{ objectPosition: p.imagePosition || 'center' }} />
+    return (
+      <img
+        src={p.image}
+        srcSet={`${p.image.replace('.webp', '-800.webp')} 800w, ${p.image} 1400w`}
+        sizes="(max-width: 860px) 95vw, 60vw"
+        width="1400"
+        height="875"
+        alt={`${p.title} screenshot`}
+        loading="lazy"
+        style={{ objectPosition: p.imagePosition || 'center' }}
+      />
+    )
   return (
     <div className="cover" aria-hidden="true">
       <div className="cover__glyph" />
@@ -35,7 +46,7 @@ export default function Work() {
   }, [])
 
   return (
-    <section className="section" id="work" ref={root}>
+    <section className="section" id="work" ref={root} data-theme="dark">
       <div className="section-head mono">
         <span>(02) Selected work</span>
         <span className="muted">{projects.length} projects</span>

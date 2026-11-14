@@ -3,9 +3,9 @@ import { experience, skills } from '../data/content'
 export default function Experience() {
   return (
     <>
-      <section className="section" id="experience">
+      <section className="section" id="experience" data-theme="light">
         <div className="section-head mono">
-          <span>(03) Experience</span>
+          <h2>(03) Experience</h2>
           <span className="muted">Where I’ve worked</span>
         </div>
         <div className="exp">
@@ -27,9 +27,9 @@ export default function Experience() {
         </div>
       </section>
 
-      <section className="section" id="skills" style={{ paddingTop: 0 }}>
+      <section className="section" id="skills" style={{ paddingTop: 0 }} data-theme="light">
         <div className="section-head mono">
-          <span>(04) Toolkit</span>
+          <h2>(04) Toolkit</h2>
           <span className="muted">What I work with</span>
         </div>
         <div className="skills">

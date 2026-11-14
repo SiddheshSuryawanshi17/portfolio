@@ -62,13 +62,21 @@ export default function Gallery() {
   }, [])
 
   return (
-    <section className="gallery" id="life" ref={root}>
+    <section className="gallery" id="life" ref={root} data-theme="dark">
       <Intro className="gallery__intro--mobile" />
       <div className="gallery__track" ref={track}>
         <Intro />
         {gallery.photos.map((src, i) => (
           <figure className="shot" key={src}>
-            <img src={src} alt={`Siddhesh, photo ${i + 1}`} loading="lazy" />
+            <img
+              src={src}
+              srcSet={`${src.replace('.webp', '-640.webp')} 640w, ${src} 1040w`}
+              sizes="(max-width: 760px) 74vw, 40vw"
+              width="1040"
+              height="1300"
+              alt={`Siddhesh, photo ${i + 1}`}
+              loading="lazy"
+            />
             <figcaption className="shot__n mono">{String(i + 1).padStart(2, '0')}</figcaption>
           </figure>
         ))}

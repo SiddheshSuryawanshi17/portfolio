@@ -1,18 +1,17 @@
-# Drop your images here
+# Images
 
-## Your photo → `me/portrait.jpg`
-- Name it exactly **portrait.jpg** and put it in the `me` folder.
-- Portrait (taller than wide) works best, around **1200 × 1500 px**.
-- It shows in black-and-white and turns to colour when someone hovers over it, so any photo works.
-- Until you add one, the site shows an "SS" monogram instead.
+All site photos are WebP (smaller and faster than JPG). Most come in two
+sizes, e.g. `01.webp` (large) and `01-640.webp` (phones). The browser picks
+the right one.
 
-## Project images → `projects/`
-- Name them however you like, e.g. `medintel.jpg`.
-- Landscape, around **1600 × 1000 px**, under ~500 KB each.
-- Then open `src/data/content.js`, find the project, and set
-  `image: '/images/projects/medintel.jpg'`.
-- A project with no image gets a generated cover in its own colour.
+| File | Used for |
+|---|---|
+| `me/portrait-cutout.webp` | The particle portrait in the hero (photo with the background removed) |
+| `me/portrait*.webp` | About section photo |
+| `me/portrait-casual*.webp` | Photo shown when hovering over the About photo |
+| `me/gallery/*.webp` | "Off the clock" photo strip |
+| `projects/*.webp` | Project screenshots |
 
-## Extra photos (`me/` folder)
-Put any other photos in `me/` too (hackathon stage shots, team photos,
-you at work). Tell Claude and they'll be worked into the site.
+**Changing photos:** easiest is to drop the new photo in the main folder and
+ask Claude to swap it. It will resize, convert and wire it up for you. To add
+a gallery photo yourself, add both sizes and list it in `src/data/content.js`.

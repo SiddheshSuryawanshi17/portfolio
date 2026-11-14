@@ -97,7 +97,7 @@ const fragment = /* glsl */ `
   }
 `
 
-export default function NeuralField() {
+export default function NeuralField({ scrollLinked = true, className = 'hero__canvas' }) {
   const mountRef = useRef(null)
 
   useEffect(() => {
@@ -204,7 +204,7 @@ export default function NeuralField() {
       const t = clock.getElapsedTime()
       uniforms.uTime.value = reduce ? 4 : t
       uniforms.uMouse.value.lerp(target, 0.06)
-      uniforms.uScroll.value = Math.min(window.scrollY / window.innerHeight, 1.5)
+      uniforms.uScroll.value = scrollLinked ? Math.min(window.scrollY / window.innerHeight, 1.5) : 0
       camera.position.x += (ndc.x * 0.6 - camera.position.x) * 0.03
       camera.lookAt(0, 0, -2)
       renderer.render(scene, camera)
@@ -223,5 +223,5 @@ export default function NeuralField() {
     }
   }, [])
 
-  return <div className="hero__canvas" ref={mountRef} aria-hidden="true" />
+  return <div className={className} ref={mountRef} aria-hidden="true" />
 }

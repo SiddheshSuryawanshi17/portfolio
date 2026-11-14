@@ -35,7 +35,8 @@ export default function Marquee() {
 
   const items = [...marquee, ...marquee]
   return (
-    <div className="marquee" aria-label={marquee.join(', ')}>
+    <div className="marquee">
+      <p className="sr-only">Focus areas: {marquee.join(', ')}</p>
       <div className="marquee__track" ref={track} aria-hidden="true">
         {items.map((t, i) => (
           <span className="marquee__item" key={i}>
