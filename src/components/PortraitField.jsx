@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { ACCENT } from '../lib/accent'
 
 // The hero photo dissolving into particles.
 // At rest the real photo is shown (see Hero.jsx). As you scroll down, the
@@ -192,7 +193,7 @@ export default function PortraitField({ ready }) {
         uDot: { value: 4 },
         uPixelRatio: { value: dpr },
         uBase: { value: new THREE.Color('#ecebe6') },
-        uAccent: { value: new THREE.Color('#c6ff3d') },
+        uAccent: { value: new THREE.Color(ACCENT) },
       }
       const mat = new THREE.ShaderMaterial({
         vertexShader: vertex,

@@ -12,6 +12,7 @@
   --muted: #8b8a85;
   --line: rgba(236, 235, 230, 0.12);
   --accent: #c6ff3d;
+  --accent-rgb: 198, 255, 61;
   --accent-ink: #0a0a0b;
   --accent-text: #c6ff3d;
   --orange-text: #fb923c;
@@ -104,6 +105,13 @@ button {
 }
 
 /* ── film grain ─────────────────────────────────────────── */
+/* Preview: Claude orange accent. Open the site with ?accent=orange */
+html[data-accent='orange'] {
+  --accent: #d97757;
+  --accent-text: #d97757;
+  --accent-rgb: 217, 119, 87;
+}
+
 .grain {
   position: fixed;
   inset: -50%;
@@ -184,13 +192,13 @@ button {
   height: 8px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 0 rgba(198, 255, 61, 0.6);
+  box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.6);
   animation: pulse 2s infinite;
 }
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(198, 255, 61, 0.55); }
-  70% { box-shadow: 0 0 0 10px rgba(198, 255, 61, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(198, 255, 61, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(var(--accent-rgb), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0); }
 }
 
 .pill {
@@ -412,7 +420,7 @@ button {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(40% 50% at 64% 45%, rgba(198, 255, 61, 0.07), transparent 70%),
+    radial-gradient(40% 50% at 64% 45%, rgba(var(--accent-rgb), 0.07), transparent 70%),
     linear-gradient(to top, #0a0a0b 0%, transparent 22%);
 }
 .hero-photo-layer {
@@ -458,7 +466,7 @@ button {
   top: 0;
   height: 2px;
   background: var(--accent);
-  box-shadow: 0 0 18px 4px rgba(198, 255, 61, 0.55);
+  box-shadow: 0 0 18px 4px rgba(var(--accent-rgb), 0.55);
 }
 /* faint scan that passes over the photo every few seconds */
 .hero__scan {
@@ -479,7 +487,7 @@ button {
   right: 0;
   top: 0;
   height: 14%;
-  background: linear-gradient(to bottom, transparent, rgba(198, 255, 61, 0.38) 60%, rgba(198, 255, 61, 0.7) 62%, transparent 64%);
+  background: linear-gradient(to bottom, transparent, rgba(var(--accent-rgb), 0.38) 60%, rgba(var(--accent-rgb), 0.7) 62%, transparent 64%);
   transform: translateY(-110%);
   animation: scan 7s linear 4s infinite;
 }
@@ -716,7 +724,7 @@ button {
   display: grid;
   place-items: center;
   background:
-    radial-gradient(60% 50% at 30% 30%, rgba(198, 255, 61, 0.25), transparent 70%),
+    radial-gradient(60% 50% at 30% 30%, rgba(var(--accent-rgb), 0.25), transparent 70%),
     radial-gradient(50% 60% at 80% 80%, rgba(124, 196, 255, 0.18), transparent 70%),
     var(--bg-2);
 }

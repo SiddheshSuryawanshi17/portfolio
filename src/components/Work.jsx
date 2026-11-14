@@ -64,7 +64,7 @@ export default function Work() {
 
       <div className="cards">
         {projects.map((p, i) => (
-          <article className="card" key={p.title} style={{ '--card-color': p.color }}>
+          <article className="card" key={p.title} style={{ '--card-color': p.color === 'accent' ? 'var(--accent)' : p.color }}>
             <div className="card__info">
               <div>
                 <div className="card__top mono">

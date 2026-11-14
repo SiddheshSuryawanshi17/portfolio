@@ -59,13 +59,18 @@
         ]
       }
     </script>
+    <script>
+      // ?accent=orange previews the site in Claude orange instead of lime
+      if (new URLSearchParams(location.search).get('accent') === 'orange') document.documentElement.dataset.accent = 'orange'
+    </script>
     <!-- First paint: shown instantly while the app loads, then replaced by the animated loader -->
     <style>
       html,body{margin:0;background:#0a0a0b;color:#ecebe6}
       #boot{position:fixed;inset:0;z-index:199;clip-path:inset(0 0 0% 0);background:#0a0a0b;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(16px,3.2vw,48px);box-sizing:border-box;font-family:'Inter Tight Variable',system-ui,-apple-system,'Segoe UI',sans-serif}
       #boot p{margin:0;font:12px/1.5 ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase}
       #boot b{align-self:flex-end;width:2.2em;text-align:right;font-variant-numeric:tabular-nums;font-size:clamp(96px,22vw,340px);font-weight:700;line-height:.8;letter-spacing:-.06em}
-      #boot s{position:absolute;left:0;bottom:0;height:3px;width:100%;background:#c6ff3d;transform-origin:left;transform:scaleX(0)}
+      #boot s{position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--boot-accent,#c6ff3d);transform-origin:left;transform:scaleX(0)}
+      html[data-accent=orange] #boot s{background:#d97757}
       #boot i{font-style:normal;font-weight:700;font-size:clamp(44px,12.2vw,280px);line-height:.84;letter-spacing:-.065em;text-transform:uppercase;color:#232326;margin-left:-.04em}
     </style>
   </head>

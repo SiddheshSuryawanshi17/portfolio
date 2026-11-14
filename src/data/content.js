@@ -74,7 +74,7 @@ export const projects = [
     stack: ['Gemma 4', 'Ollama', 'Whisper', 'Piper TTS', 'Gradio', 'Python'],
     award: '1st Prize · Build with Gemma, ML Nashik × Kaggle',
     image: '/images/projects/ai-interviewer-thumbnail.webp',
-    color: '#c6ff3d',
+    color: 'accent', // follows the site accent colour
     link: 'https://github.com/SiddheshSuryawanshi17/Privacy-First-AI-Interviewer',
   },
   {

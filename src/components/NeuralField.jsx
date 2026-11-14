@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import { ACCENT } from '../lib/accent'
 
 // A flowing terrain of particles viewed in perspective. Noise drives the
 // waves; the cursor pushes a glowing ripple through the field.
@@ -150,7 +151,7 @@ export default function NeuralField({ scrollLinked = true, className = 'hero__ca
       uPixelRatio: { value: dpr },
       uScroll: { value: 0 },
       uBase: { value: new THREE.Color('#7a7a74') },
-      uAccent: { value: new THREE.Color('#c6ff3d') },
+      uAccent: { value: new THREE.Color(ACCENT) },
     }
     const material = new THREE.ShaderMaterial({
       vertexShader: vertex,
