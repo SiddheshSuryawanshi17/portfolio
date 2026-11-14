@@ -11,10 +11,10 @@
   --fg-2: #c9c8c2;
   --muted: #8b8a85;
   --line: rgba(236, 235, 230, 0.12);
-  --accent: #c6ff3d;
-  --accent-rgb: 198, 255, 61;
+  --accent: #d97757;
+  --accent-rgb: 217, 119, 87;
   --accent-ink: #0a0a0b;
-  --accent-text: #c6ff3d;
+  --accent-text: #d97757;
   --orange-text: #fb923c;
 
   --f-sans: 'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif;
@@ -105,13 +105,6 @@ button {
 }
 
 /* ── film grain ─────────────────────────────────────────── */
-/* Preview: Claude orange accent. Open the site with ?accent=orange */
-html[data-accent='orange'] {
-  --accent: #d97757;
-  --accent-text: #d97757;
-  --accent-rgb: 217, 119, 87;
-}
-
 .grain {
   position: fixed;
   inset: -50%;
