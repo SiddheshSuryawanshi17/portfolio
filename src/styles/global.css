@@ -727,6 +727,10 @@ button {
   padding: 0 0 clamp(96px, 12vw, 180px);
 }
 .hello__frame {
+  /* always fits on one screen: never taller than ~80% of the viewport */
+  width: min(100% - 2 * var(--gutter), (100svh - 180px) * 1672 / 941);
+  margin: 0 auto;
+  border-radius: 14px;
   overflow: hidden;
   aspect-ratio: 1672 / 941;
   background: #fbece0;
@@ -745,7 +749,8 @@ button {
   padding: 24px var(--gutter) 0;
   border-bottom: 1px solid var(--line);
   padding-bottom: 24px;
-  margin: 0 var(--gutter);
+  width: min(100% - 2 * var(--gutter), (100svh - 180px) * 1672 / 941);
+  margin: 0 auto;
   padding-left: 0;
   padding-right: 0;
 }

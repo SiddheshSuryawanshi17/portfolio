@@ -13,9 +13,9 @@ export default function Hello() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         '.hello__frame',
-        { clipPath: 'inset(14% 22% 14% 22% round 20px)' },
+        { clipPath: 'inset(12% 18% 12% 18% round 14px)' },
         {
-          clipPath: 'inset(0% 0% 0% 0% round 0px)',
+          clipPath: 'inset(0% 0% 0% 0% round 14px)',
           ease: 'none',
           scrollTrigger: { trigger: '.hello__frame', start: 'top 85%', end: 'center 55%', scrub: true },
         },
@@ -38,7 +38,7 @@ export default function Hello() {
         <img
           src="/images/me/hello-recruiter.webp"
           srcSet="/images/me/hello-recruiter-900.webp 900w, /images/me/hello-recruiter.webp 1672w"
-          sizes="100vw"
+          sizes="(max-width: 760px) 100vw, 80vw"
           width="1672"
           height="941"
           loading="lazy"

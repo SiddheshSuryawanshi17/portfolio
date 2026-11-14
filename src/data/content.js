@@ -57,7 +57,7 @@ export const about = {
   stats: [
     { value: '1st', label: 'Prize · Build with Gemma hackathon' },
     { value: '3', label: 'Internships & roles' },
-    { value: '94%', label: 'CNN accuracy, flower classifier' },
+    { value: '100%', label: 'On-device · AI Interviewer runs offline' },
     { value: '2027', label: 'B.E. Computer Engineering' },
   ],
 }
@@ -110,17 +110,6 @@ export const projects = [
     image: '',
     color: '#ffd23d',
     link: 'https://github.com/SiddheshSuryawanshi17/farmconnect',
-  },
-  {
-    title: 'Flower Classification',
-    tag: 'Deep learning',
-    year: '2025',
-    blurb:
-      'A CNN that tells flower species apart with 94% accuracy, using transfer learning on VGG16 and ResNet, with data augmentation to make it robust and avoid overfitting.',
-    stack: ['TensorFlow', 'Keras', 'VGG16', 'ResNet', 'Python'],
-    image: '',
-    color: '#ff6fb5',
-    link: 'https://github.com/SiddheshSuryawanshi17',
   },
 ]
 
