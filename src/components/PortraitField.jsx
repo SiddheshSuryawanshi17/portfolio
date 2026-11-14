@@ -1,12 +1,11 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-// Siddhesh's portrait rebuilt from thousands of particles.
-// - particles fly in from a scattered cloud and assemble the face
-// - the cursor pushes particles away and lights them up
-// - a lime "scan line" sweeps down every few seconds, like a model reading the image
-// - scrolling down blows the portrait apart again
-// Falls back to a static dot-drawing on devices without proper GPU support.
+// The hero photo dissolving into particles.
+// At rest the real photo is shown (see Hero.jsx). As you scroll down, the
+// photo fades and this layer takes over: the same portrait made of thousands
+// of particles that blow apart. Nothing is drawn while the page is at the top.
+// Skipped entirely on reduced-motion or software-rendered devices.
 
 const SRC = '/images/me/portrait-cutout.webp'
 
@@ -47,7 +46,7 @@ const vertex = /* glsl */ `
     p += normalize(d + 0.0001) * f * radius * 0.45;
 
     // scroll explode
-    p += (aScatter.xy - position.xy) * uScale * uScroll * (0.6 + aRand);
+    p += (aScatter.xy - position.xy) * uScale * smoothstep(0.04, 1.0, uScroll) * (0.6 + aRand);
 
     // scan line (uScan is 0..1 from top to bottom of portrait)
     float py = 1.0 - position.y;
@@ -55,7 +54,7 @@ const vertex = /* glsl */ `
 
     vLum = aLum;
     vGlow = clamp(scan + f * 1.2, 0.0, 1.0);
-    vAlpha = t * (1.0 - clamp(uScroll * 1.4, 0.0, 1.0));
+    vAlpha = smoothstep(0.0, 0.1, uScroll) * (1.0 - smoothstep(0.55, 1.0, uScroll));
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 0.0, 1.0);
     float size = uDot * (0.28 + aLum * 0.95) * (1.0 + vGlow * 0.9);
@@ -115,24 +114,6 @@ function layout(w, h, aspect) {
   return { width, height, cx, bottom: 0 }
 }
 
-function drawStatic(canvas, sample, w, h, dpr) {
-  const ctx = canvas.getContext('2d')
-  canvas.width = w * dpr
-  canvas.height = h * dpr
-  ctx.scale(dpr, dpr)
-  const L = layout(w, h, sample.aspect)
-  const dot = L.height / sample.rows
-  for (let i = 0; i < sample.pts.length; i += 3) {
-    const x = sample.pts[i] * L.width + L.cx
-    const y = h - (sample.pts[i + 1] * L.height + L.bottom)
-    const lum = sample.pts[i + 2]
-    ctx.fillStyle = `rgba(236,235,230,${0.3 + lum * 0.7})`
-    ctx.beginPath()
-    ctx.arc(x, y, (dot * (0.28 + lum * 0.95)) / 2, 0, Math.PI * 2)
-    ctx.fill()
-  }
-}
-
 export default function PortraitField({ ready }) {
   const mount = useRef(null)
   const api = useRef({})
@@ -142,6 +123,7 @@ export default function PortraitField({ ready }) {
     let disposed = false
     let cleanup = () => {}
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) return
     const small = window.innerWidth < 760
 
     const img = new Image()
@@ -154,7 +136,7 @@ export default function PortraitField({ ready }) {
 
       // try WebGL; fall back to a static drawing on software renderers
       let renderer = null
-      if (!reduce) {
+      {
         try {
           renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: 'high-performance' })
           const gl = renderer.getContext()
@@ -169,21 +151,8 @@ export default function PortraitField({ ready }) {
         }
       }
 
-      if (!renderer) {
-        const canvas = document.createElement('canvas')
-        el.appendChild(canvas)
-        const draw = () => drawStatic(canvas, sample, el.clientWidth, el.clientHeight, dpr)
-        draw()
-        el.classList.add('is-static')
-        api.current.static = true
-        const ro = new ResizeObserver(draw)
-        ro.observe(el)
-        cleanup = () => {
-          ro.disconnect()
-          canvas.remove()
-        }
-        return
-      }
+      // no capable GPU: the photo alone is shown, which is fine
+      if (!renderer) return
 
       renderer.setPixelRatio(dpr)
       el.appendChild(renderer.domElement)
@@ -275,13 +244,20 @@ export default function PortraitField({ ready }) {
         raf = requestAnimationFrame(tick)
         if (!visible) return
         const t = clock.getElapsedTime()
-        if (api.current.go) intro = Math.min(intro + 1 / 100, 1)
+        intro = 1
+        const scroll = Math.min(window.scrollY / (el.clientHeight * 1.1), 1)
+        // nothing to draw at the top of the page: clear once and idle
+        if (scroll <= 0.001) {
+          if (u.uScroll.value > 0) {
+            u.uScroll.value = 0
+            renderer.clear()
+          }
+          return
+        }
         u.uTime.value = t
         u.uIntro.value = intro
-        u.uScroll.value = Math.min(window.scrollY / (el.clientHeight * 1.1), 1)
-        // a sweep every 6s, taking ~1.8s top→bottom
-        const cyc = (t % 6) / 1.8
-        u.uScan.value = intro >= 1 && cyc <= 1.2 ? cyc - 0.1 : -1
+        u.uScroll.value = scroll
+        u.uScan.value = -1
         u.uMouse.value.lerp(mouse, 0.12)
         u.uMouseOn.value += (mouseOn - u.uMouseOn.value) * 0.06
         renderer.render(scene, camera)

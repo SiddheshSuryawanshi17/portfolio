@@ -32,7 +32,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preload" href="/images/me/portrait-cutout.webp" as="image" type="image/webp" />
+    <link rel="preload" as="image" type="image/webp" href="/images/me/portrait-hero-1003.webp" imagesrcset="/images/me/portrait-hero-560.webp 560w, /images/me/portrait-hero-820.webp 820w, /images/me/portrait-hero-1003.webp 1003w" imagesizes="(max-width: 760px) 53svh, min(78svh, 53vw)" fetchpriority="high" />
 
     <!-- Tells Google who this site is about -->
     <script type="application/ld+json">
@@ -71,6 +71,22 @@
   </head>
   <body>
     <div id="boot" aria-hidden="true"><p>Portfolio · Loading</p><i>Siddhesh<br />Suryawanshi</i><b>000</b><s></s></div>
+    <!-- Hero photo lives in the HTML (not the app) so it can show the moment it downloads -->
+    <div class="hero-photo-layer">
+      <div class="hero__photo" id="hero-photo">
+        <img
+          src="/images/me/portrait-hero-1003.webp"
+          srcset="/images/me/portrait-hero-560.webp 560w, /images/me/portrait-hero-820.webp 820w, /images/me/portrait-hero-1003.webp 1003w"
+          sizes="(max-width: 760px) 53svh, min(78svh, 53vw)"
+          width="1003"
+          height="1137"
+          fetchpriority="high"
+          alt="Siddhesh Suryawanshi"
+        />
+        <span class="hero__scan" aria-hidden="true"></span>
+        <span class="hero__cover" aria-hidden="true"></span>
+      </div>
+    </div>
     <div id="root"></div>
     <noscript>
       <h1>Siddhesh Suryawanshi, AI / ML Engineer</h1>

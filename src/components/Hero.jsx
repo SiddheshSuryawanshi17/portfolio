@@ -17,6 +17,7 @@ export default function Hero({ ready }) {
     const ctx = gsap.context(() => {
       gsap.set('.hero__name .char', { yPercent: 115 })
       gsap.set('.hero [data-fade]', { opacity: 0, y: 16 })
+      if (reducedMotion) gsap.set(document.querySelector('#hero-photo .hero__cover'), { scaleY: 0 })
     }, root)
     return () => ctx.revert()
   }, [])
@@ -25,16 +26,35 @@ export default function Hero({ ready }) {
     if (!ready) return
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'expo.out' } })
-      tl.to('.hero__name .char', { yPercent: 0, duration: reducedMotion ? 0.01 : 1.1, stagger: 0.022 })
+      if (!reducedMotion) tl.to(document.querySelector('#hero-photo .hero__cover'), { scaleY: 0, duration: 1.5, ease: 'power2.inOut' }, 0.45)
+      tl.to('.hero__name .char', { yPercent: 0, duration: reducedMotion ? 0.01 : 1.1, stagger: 0.022 }, 0.7)
         .to('.hero [data-fade]', { opacity: 1, y: 0, duration: 0.8, stagger: 0.06 }, '-=0.9')
 
       if (!reducedMotion) {
+        // photo fades as the particle version takes over on scroll
+        gsap.to(document.getElementById('hero-photo'), {
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: { trigger: root.current, start: 'top top', end: () => `+=${root.current.offsetHeight * 0.13}`, scrub: true },
+        })
         gsap.to('.hero__content', {
           yPercent: -18,
           opacity: 0.2,
           ease: 'none',
           scrollTrigger: { trigger: root.current, start: 'top top', end: 'bottom top', scrub: true },
         })
+        // gentle drift toward the cursor
+        if (!window.matchMedia('(pointer: coarse)').matches) {
+          const img = document.querySelector('#hero-photo img')
+          const xTo = gsap.quickTo(img, 'x', { duration: 1.2, ease: 'power3' })
+          const yTo = gsap.quickTo(img, 'y', { duration: 1.2, ease: 'power3' })
+          const move = (e) => {
+            xTo((e.clientX / window.innerWidth - 0.5) * -18)
+            yTo((e.clientY / window.innerHeight - 0.5) * -10)
+          }
+          window.addEventListener('pointermove', move, { passive: true })
+          return () => window.removeEventListener('pointermove', move)
+        }
       }
     }, root)
     return () => ctx.revert()
