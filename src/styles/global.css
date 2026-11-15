@@ -297,13 +297,20 @@ button {
   color: #fff;
 }
 .nav__logo {
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: -0.03em;
+  justify-self: start;
 }
-.nav__logo sup {
-  font-size: 10px;
-  font-weight: 400;
+.nav__logo svg {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+.logo__accent {
+  fill: var(--accent);
+  transition: fill 0.5s var(--ease);
+}
+/* on the lime phone menu a lime S would vanish, so the whole mark goes dark */
+.nav.menu-open .logo__accent {
+  fill: currentColor;
 }
 .nav__links {
   display: flex;

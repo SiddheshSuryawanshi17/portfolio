@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { profile, socials } from '../data/content'
 import { scrollTo, lockScroll } from '../lib/scroll'
 import useLocalTime from '../hooks/useLocalTime'
+import Logo from './Logo'
 
 const links = [
   ['Work', '#work'],
@@ -28,9 +29,10 @@ export default function Nav() {
     <>
       <header className={`nav ${open ? 'menu-open' : ''}`}>
         <a href="#top" className="nav__logo" onClick={(e) => go(e, '#top')}>
-          {profile.initials}
-          <sup>©</sup>
-          <span className="sr-only"> {profile.firstName} {profile.lastName}, back to top</span>
+          <Logo />
+          <span className="sr-only">
+            {profile.firstName} {profile.lastName}, back to top
+          </span>
         </a>
         <div className="nav__time mono">
           {profile.location.split(',')[0]} · {time} IST
