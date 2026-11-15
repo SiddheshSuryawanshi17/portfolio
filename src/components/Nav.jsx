@@ -3,6 +3,7 @@ import { profile, socials } from '../data/content'
 import { scrollTo, lockScroll } from '../lib/scroll'
 import useLocalTime from '../hooks/useLocalTime'
 import Logo from './Logo'
+import SoundToggle from './SoundToggle'
 
 const links = [
   ['Work', '#work'],
@@ -37,16 +38,19 @@ export default function Nav() {
         <div className="nav__time mono">
           {profile.location.split(',')[0]} · {time} IST
         </div>
-        <nav className="nav__links mono" aria-label="Main">
-          {links.map(([l, h]) => (
-            <a key={h} href={h} onClick={(e) => go(e, h)}>
-              {l}
-            </a>
-          ))}
-        </nav>
-        <button className="nav__burger mono" onClick={() => toggle(!open)} aria-expanded={open} aria-controls="menu">
-          {open ? 'Close' : 'Menu'}
-        </button>
+        <div className="nav__right">
+          <nav className="nav__links mono" aria-label="Main">
+            {links.map(([l, h]) => (
+              <a key={h} href={h} onClick={(e) => go(e, h)}>
+                {l}
+              </a>
+            ))}
+          </nav>
+          <SoundToggle />
+          <button className="nav__burger mono" onClick={() => toggle(!open)} aria-expanded={open} aria-controls="menu">
+            {open ? 'Close' : 'Menu'}
+          </button>
+        </div>
       </header>
       <div className={`menu-backdrop ${open ? 'is-open' : ''}`} onClick={() => toggle(false)} aria-hidden="true" />
       <div id="menu" className={`menu ${open ? 'is-open' : ''}`} aria-hidden={!open}>
