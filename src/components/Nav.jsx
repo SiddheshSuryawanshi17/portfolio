@@ -46,6 +46,7 @@ export default function Nav() {
           {open ? 'Close' : 'Menu'}
         </button>
       </header>
+      <div className={`menu-backdrop ${open ? 'is-open' : ''}`} onClick={() => toggle(false)} aria-hidden="true" />
       <div id="menu" className={`menu ${open ? 'is-open' : ''}`} aria-hidden={!open}>
         {links.map(([l, h]) => (
           <a key={h} className="menu__big" href={h} onClick={(e) => go(e, h)} tabIndex={open ? 0 : -1}>

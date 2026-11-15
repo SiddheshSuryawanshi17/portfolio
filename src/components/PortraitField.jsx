@@ -109,10 +109,13 @@ function samplePortrait(img, cols) {
 // Where the portrait sits inside the hero.
 function layout(w, h, aspect) {
   const mobile = w < 760
-  const height = mobile ? h * 0.6 : Math.min(h * 0.88, w * 0.6)
-  const width = height * aspect
-  const cx = mobile ? w * 0.56 : w * 0.66
-  return { width, height, cx, bottom: 0 }
+  if (mobile) {
+    // matches the .hero__photo phone rule: 64px from the top, centred
+    const height = Math.min(h * 0.54, w * 1.08)
+    return { width: height * aspect, height, cx: w * 0.5, bottom: Math.max(0, h - 64 - height) }
+  }
+  const height = Math.min(h * 0.88, w * 0.6)
+  return { width: height * aspect, height, cx: w * 0.66, bottom: 0 }
 }
 
 export default function PortraitField({ ready }) {

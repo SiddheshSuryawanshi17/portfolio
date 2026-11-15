@@ -360,6 +360,20 @@ button {
   line-height: 1;
   text-transform: uppercase;
 }
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 78;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s var(--ease), visibility 0s 0.5s;
+}
+.menu-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s var(--ease), visibility 0s;
+}
 .menu__socials {
   display: flex;
   flex-wrap: wrap;
@@ -383,6 +397,20 @@ button {
   .nav.menu-open {
     mix-blend-mode: normal;
     color: var(--accent-ink);
+  }
+  /* drop-down panel instead of a full-screen takeover */
+  .menu {
+    inset: 0 0 auto 0;
+    justify-content: flex-start;
+    padding: 84px var(--gutter) 28px;
+    border-radius: 0 0 20px 20px;
+  }
+  .menu a.menu__big {
+    font-size: clamp(36px, 11vw, 64px);
+    padding: 4px 0;
+  }
+  .menu__socials {
+    margin-top: 24px;
   }
 }
 
@@ -555,9 +583,12 @@ button {
   .hero {
     justify-content: flex-end;
   }
+  /* phones: photo sits in the top part of the screen, text below it */
   .hero__photo {
-    left: 56%;
-    height: 60%;
+    top: 64px;
+    bottom: auto;
+    left: 50%;
+    height: min(54%, 108vw);
   }
   .hero__bottom .muted {
     display: none;
