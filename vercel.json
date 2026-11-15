@@ -1,47 +1,47 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.siddheshsuryawanshi.me"
         }
       ],
-      "destination": "https://siddheshsuryawanshi.me/:path*",
+      "destination": "https://siddheshsuryawanshi.me/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "portfolio-seven-rho-6giumv599g.vercel.app"
         }
       ],
-      "destination": "https://siddheshsuryawanshi.me/:path*",
+      "destination": "https://siddheshsuryawanshi.me/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "portfolio-siddheshsuryawanshis-projects.vercel.app"
         }
       ],
-      "destination": "https://siddheshsuryawanshi.me/:path*",
+      "destination": "https://siddheshsuryawanshi.me/$1",
       "permanent": true
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "portfolio-git-master-siddheshsuryawanshis-projects.vercel.app"
         }
       ],
-      "destination": "https://siddheshsuryawanshi.me/:path*",
+      "destination": "https://siddheshsuryawanshi.me/$1",
       "permanent": true
     }
   ],
