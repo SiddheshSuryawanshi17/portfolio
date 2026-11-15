@@ -40,6 +40,8 @@ export const marquee = [
   'Generative AI',
   'Multi-Agent Systems',
   'Local LLMs',
+  'RAG',
+  'LoRA Fine-tuning',
   'Deep Learning',
   'AWS Cloud',
   'CI/CD',
@@ -76,6 +78,40 @@ export const projects = [
     image: '/images/projects/ai-interviewer-thumbnail.webp',
     color: 'accent', // follows the site accent colour
     link: 'https://github.com/SiddheshSuryawanshi17/Privacy-First-AI-Interviewer',
+  },
+  {
+    title: 'Local Agentic RAG',
+    tag: 'RAG · LangGraph',
+    year: '2026',
+    blurb:
+      'A self-correcting research assistant that runs fully on a laptop. A LangGraph agent searches PDFs with hybrid BM25 + vector retrieval, grades what it finds, rewrites weak queries, answers with page citations and fact-checks itself. 14/14 on its eval set; hybrid search beat vector-only by 4.7 points.',
+    stack: ['LangGraph', 'LangChain', 'Ollama', 'FAISS', 'BM25', 'Streamlit'],
+    image: '/images/projects/agentic-rag.webp',
+    imagePosition: 'left top',
+    color: '#7cc4ff',
+    link: 'https://github.com/SiddheshSuryawanshi17/local-agentic-rag',
+  },
+  {
+    title: 'GPT from Scratch',
+    tag: 'Build an LLM',
+    year: '2026',
+    blurb:
+      'A GPT-style language model with my own byte-level BPE tokenizer, attention and KV-cached sampling, written from scratch in PyTorch. Trained on TinyStories in 32 minutes on a MacBook: 12.2M parameters, validation perplexity 6.5, writing coherent short stories.',
+    stack: ['PyTorch', 'Transformers', 'BPE', 'KV cache', 'Apple MPS'],
+    image: '',
+    color: '#ff6fb5',
+    link: 'https://github.com/SiddheshSuryawanshi17/gpt-from-scratch',
+  },
+  {
+    title: 'Text-to-SQL LoRA',
+    tag: 'Fine-tuning',
+    year: '2026',
+    blurb:
+      'Fine-tuned a 0.5B LLM to turn English questions into SQL with LoRA on Apple MLX, training just 0.29% of its weights in 6 minutes. Execution accuracy on 292 held-out questions jumped from 37.3% to 83.9%, scored by running every query on adversarially generated databases.',
+    stack: ['LoRA', 'Apple MLX', 'Qwen2.5', 'SQLite', 'sqlglot'],
+    image: '',
+    color: '#b18cff',
+    link: 'https://github.com/SiddheshSuryawanshi17/text2sql-lora',
   },
   {
     title: 'MedIntel',
@@ -150,7 +186,7 @@ export const experience = [
 export const skills = [
   {
     group: 'AI & Machine Learning',
-    items: ['Generative AI & LLMs', 'Multi-Agent Systems', 'Deep Learning', 'Neural Networks', 'TensorFlow / Keras', 'PyTorch', 'Scikit-learn', 'OpenCV'],
+    items: ['RAG & Agentic RAG', 'LangGraph / LangChain', 'LLM fine-tuning (LoRA)', 'Local LLMs (Ollama, MLX)', 'Transformers from scratch', 'Multi-Agent Systems', 'PyTorch', 'TensorFlow / Keras', 'Scikit-learn'],
   },
   {
     group: 'Languages',
